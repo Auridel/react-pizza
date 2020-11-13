@@ -20,6 +20,8 @@ const MenuItem = ({item, cart}) => {
         const newItem = {
             id: uuidv4(),
             itemId: item.id,
+            title: item.title,
+            img: item.img,
             crust: crustOpt,
             size: sizeOpt,
             quantity: 1,

@@ -33,7 +33,9 @@ const CartItem = ({id, img, title, crust, size, price, quantity, changeQuantity}
                 <b>{+price * +quantity}</b>
             </div>
             <div className="cart__item-remove">
-                <div className="button button--outline button--circle">
+                <div
+                    onClick={() => changeQuantity("remove", id)}
+                    className="button button--outline button--circle">
                     <Plus/>
                 </div>
             </div>

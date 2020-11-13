@@ -27,12 +27,13 @@ const CLEAR_CART = () => {
     }
 }
 
-const REMOVE_FROM_CART = (items, total) => {
+const REMOVE_FROM_CART = (items, total, quantity = 1) => {
     return {
         type: "REMOVE_FROM_CART",
         payload: {
             items,
-            total
+            total,
+            quantity
         }
     }
 }

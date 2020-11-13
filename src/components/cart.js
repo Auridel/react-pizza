@@ -31,6 +31,11 @@ const Cart = ({cart, price, cartCount, menu}) => {
                 }
                 break;
             }
+            case "remove": {
+                const removedQuantity = cart[idx].quantity;
+                const newCart = cart.filter(el => el.id !== id);
+                dispatch(REMOVE_FROM_CART(newCart, totalPrice(newCart), removedQuantity));
+            }
             default: break;
         }
     }
@@ -68,7 +73,7 @@ const Cart = ({cart, price, cartCount, menu}) => {
                         </div>
                         <div className="content__items">
 
-                            {cart.map(item => <CartItem changeQuantity={changeQuantity} key={item.id} {...{...item, img: menu[item.itemId].img}}/>)}
+                            {cart.map(item => <CartItem changeQuantity={changeQuantity} key={item.id} {...{...item}}/>)}
 
                         </div>
                         <div className="cart__bottom">
@@ -82,7 +87,7 @@ const Cart = ({cart, price, cartCount, menu}) => {
                                     <span>Вернуться назад</span>
                                 </Link>
                                 <div className="button pay-btn">
-                                    <span>Оплатить сейчас</span>
+                                    <span>Отправить заказ</span>
                                 </div>
                             </div>
                         </div>
