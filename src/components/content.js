@@ -1,10 +1,11 @@
 import React from "react";
+import {connect} from "react-redux";
 import ItemsList from "./itemsList";
 import {ReactComponent as Arrow} from "../assets/img/arrow-top.svg";
 
-const Content = () => {
-    return (
+const Content = ({menu}) => {
 
+    return (
         <div className="container">
             <div className="content__top">
                 <div className="categories">
@@ -33,10 +34,16 @@ const Content = () => {
                 </div>
             </div>
             <h2 className="content__title">Все пиццы</h2>
-            <ItemsList/>
+            {menu.length? <ItemsList/> : ""}
         </div>
 
     )
 };
 
-export default Content;
+const mapStateToProps = (state) => {
+    return {
+        menu: state.menu
+    }
+}
+
+export default connect(mapStateToProps)(Content);
