@@ -1,24 +1,16 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 import CartItem from "./cartItem";
 import emptyCart from "../assets/img/empty-cart.png"
 import {ReactComponent as ArrowLeft} from "../assets/img/grey-arrow-left.svg";
 import {ReactComponent as CartIcon} from "../assets/img/cart.svg";
 import {ReactComponent as TrashIcon} from "../assets/img/trash.svg";
 
-const Cart = () => {
-    const isEmpty = false;
-    const item = {
-        img: "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
-        title: "Сырный цыпленок",
-        crust: "тонкое тесто",
-        size: "26 см.",
-        price: 385,
-        quantity: 2
-    }
-
+const Cart = ({cart, price, cartCount, menu}) => {
+    
     return (
-        isEmpty?
+        !cart.length?
                 <div className="container container--cart">
                     <div className="cart cart--empty">
                         <h2>Корзина пустая <icon>😕</icon></h2>
@@ -48,13 +40,13 @@ const Cart = () => {
                         </div>
                         <div className="content__items">
 
-                            <CartItem {...item}/>
+                            {cart.map(item => <CartItem key={`${item.itemId}${item.crust}${item.size}`} {...{...item, img: menu[item.itemId].img}}/>)}
 
                         </div>
                         <div className="cart__bottom">
                             <div className="cart__bottom-details">
-                                <span> Всего пицц: <b>3 шт.</b> </span>
-                                <span> Сумма заказа: <b>900 ₽</b> </span>
+                                <span> Всего пицц: <b>{cartCount} шт.</b> </span>
+                                <span> Сумма заказа: <b>{price} ₽</b> </span>
                             </div>
                             <div className="cart__bottom-buttons">
                                 <Link to="/" className="button button--outline button--add go-back-btn">
@@ -71,4 +63,14 @@ const Cart = () => {
     )
 };
 
-export default Cart;
+
+const mapStateToProps = (state) => {
+    return {
+        cart: state.cart,
+        price: state.price,
+        cartCount: state.cartCount,
+        menu: state.menu
+    }
+}
+
+export default connect(mapStateToProps)(Cart);

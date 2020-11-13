@@ -25,7 +25,7 @@ const CartItem = ({img, title, crust, size, price, quantity}) => {
                 </div>
             </div>
             <div className="cart__item-price">
-                <b>{price * quantity}</b>
+                <b>{+price * +quantity}</b>
             </div>
             <div className="cart__item-remove">
                 <div className="button button--outline button--circle">

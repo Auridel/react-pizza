@@ -12,14 +12,15 @@ const MenuItem = ({item, cart}) => {
         return Math.floor(basePrice * crustOpt * sizeOpt);
     }
 
-    const addToCart = (item) => {
+    const addToCart = () => {
         const crustOpt = crust === 1? "тонкое" : "традиционное";
         const sizeOpt = size === 1? "26" : (size === 1.2? "30" : "40");
         const newItem = {
             itemId: item.id,
             crust: crustOpt,
             size: sizeOpt,
-            quantity: 1
+            quantity: 1,
+            price: calcPrice(item.price, crust, size)
         }
         if(cart.length) {
             let newCart = [...cart];
@@ -27,18 +28,34 @@ const MenuItem = ({item, cart}) => {
             if(idx > -1) {
                 if(newCart[idx].crust === crustOpt && newCart[idx].size === sizeOpt){
                     newCart[idx].quantity++;
-                    dispatch(SET_CART(newCart))
+                    dispatch(SET_CART(newCart, totalPrice(newCart)))
                 }
             }
             else {
                 newCart = [...newCart, newItem];
-                dispatch(SET_CART(newCart));
+                dispatch(SET_CART(newCart, totalPrice(newCart)));
             }
         }
         else {
             const newCart = [newItem];
-            dispatch(SET_CART(newCart))
+            dispatch(SET_CART(newCart, totalPrice(newCart)))
         }
+    }
+
+    const showCount = () => {
+        let counter = 0;
+        const items = cart.filter(el => el.itemId === item.id);
+        items.forEach(i => {
+            counter +=i.quantity;
+        })
+        return counter;
+    }
+    const totalPrice = (arr) => {
+        let price = 0;
+        arr.forEach(el => {
+            price += el.price * el.quantity;
+        })
+        return price;
     }
 
 
@@ -78,7 +95,7 @@ const MenuItem = ({item, cart}) => {
                     className="button button--outline button--add">
                     <Plus/>
                     <span>Добавить</span>
-                    <i>2</i>
+                    <i>{showCount()}</i>
                 </div>
             </div>
         </div>

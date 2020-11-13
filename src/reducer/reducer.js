@@ -18,7 +18,9 @@ const reducer = (state = initialState, action) => {
         case "SET_CART": {
             return {
                 ...state,
-                cart: [...action.payload]
+                cart: [...action.payload.items],
+                cartCount: state.cartCount + 1,
+                price: action.payload.total
             }
         }
         default: return state;

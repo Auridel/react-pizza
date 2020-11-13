@@ -11,10 +11,13 @@ const SET_MENU = (menu) => {
     }
 }
 
-const SET_CART = (items) => {
+const SET_CART = (items, total) => {
     return {
         type: "SET_CART",
-        payload: items
+        payload: {
+            items,
+            total
+        }
     }
 }
 
