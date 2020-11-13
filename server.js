@@ -1,14 +1,16 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
-const pizzaRouter = require("./routes/route");
+const menuRouter = require("./routes/menuRouter");
+const orderRouter = require("./routes/orderRouter");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json({extended: true}));
 
-app.use("/menu", pizzaRouter);
+app.use("/menu", menuRouter);
+app.use("/order", orderRouter);
 
 const PORT = process.env.PORT || 4000;
 

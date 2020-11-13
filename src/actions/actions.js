@@ -38,6 +38,24 @@ const REMOVE_FROM_CART = (items, total, quantity = 1) => {
     }
 }
 
+const SEND_ORDER = (order) => {
+    return {
+        type: "SEND_ORDER",
+        payload: order
+    }
+}
+
+const ORDER_SUCCESS = () => {
+    return {
+        type: "ORDER_SUCCESS"
+    }
+}
+
+const CLEAR_ORDER = () => {
+    return {
+        type: "CLEAR_ORDER"
+    }
+}
 
 
 export {
@@ -45,5 +63,8 @@ export {
     SET_MENU,
     ADD_TO_CART,
     CLEAR_CART,
-    REMOVE_FROM_CART
+    REMOVE_FROM_CART,
+    SEND_ORDER,
+    ORDER_SUCCESS,
+    CLEAR_ORDER
 }

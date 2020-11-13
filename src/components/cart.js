@@ -1,16 +1,23 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import {connect, useDispatch} from "react-redux";
-import {CLEAR_CART, ADD_TO_CART, REMOVE_FROM_CART} from "../actions/actions";
+import {CLEAR_CART, ADD_TO_CART, REMOVE_FROM_CART, SEND_ORDER} from "../actions/actions";
 import CartItem from "./cartItem";
 import {totalPrice} from "../utils";
 import emptyCart from "../assets/img/empty-cart.png"
 import {ReactComponent as ArrowLeft} from "../assets/img/grey-arrow-left.svg";
 import {ReactComponent as CartIcon} from "../assets/img/cart.svg";
 import {ReactComponent as TrashIcon} from "../assets/img/trash.svg";
+import Popup from "./popup";
 
-const Cart = ({cart, price, cartCount, menu}) => {
+const Cart = ({cart, price, cartCount, orderSuccess}) => {
+    const [popup, setPopup] = useState(false);
+
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if(orderSuccess) setPopup(true);
+    }, [orderSuccess])
 
     const changeQuantity = (action, id) => {
         const idx = cart.findIndex(el => el.id === id);
@@ -43,8 +50,9 @@ const Cart = ({cart, price, cartCount, menu}) => {
     return (
         !cart.length?
                 <div className="container container--cart">
+                    {popup? <Popup trigger={setPopup}/> : ""}
                     <div className="cart cart--empty">
-                        <h2>Корзина пустая <icon>😕</icon></h2>
+                        <h2>Корзина пустая <i>😕</i></h2>
                         <p>
                             Вероятней всего, вы не заказывали ещё пиццу.<br/>
                             Для того, чтобы заказать пиццу, перейди на главную страницу.
@@ -87,7 +95,8 @@ const Cart = ({cart, price, cartCount, menu}) => {
                                     <span>Вернуться назад</span>
                                 </Link>
                                 <div className="button pay-btn">
-                                    <span>Отправить заказ</span>
+                                    <span
+                                        onClick={() => dispatch(SEND_ORDER(cart))}>Отправить заказ</span>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +111,7 @@ const mapStateToProps = (state) => {
         cart: state.cart,
         price: state.price,
         cartCount: state.cartCount,
-        menu: state.menu
+        orderSuccess: state.orderSuccess
     }
 }
 

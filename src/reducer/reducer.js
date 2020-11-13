@@ -3,7 +3,8 @@ const initialState = {
     loaded: false,
     cart: [],
     cartCount: 0,
-    price: 0
+    price: 0,
+    orderSuccess:false
 }
 
 const reducer = (state = initialState, action) => {
@@ -37,6 +38,21 @@ const reducer = (state = initialState, action) => {
                 cart: [...action.payload.items],
                 cartCount: state.cartCount - action.payload.quantity,
                 price: action.payload.total
+            }
+        }
+        case "ORDER_SUCCESS": {
+            return {
+                ...state,
+                cart: [],
+                cartCount: 0,
+                price: 0,
+                orderSuccess: true
+            }
+        }
+        case "CLEAR_ORDER": {
+            return {
+                ...state,
+                orderSuccess: false
             }
         }
         default: return state;

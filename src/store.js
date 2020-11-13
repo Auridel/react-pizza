@@ -2,7 +2,7 @@ import {createStore, applyMiddleware} from "redux";
 import createSagaMiddleware from "redux-saga";
 import {composeWithDevTools} from "redux-devtools-extension";
 import reducer from "./reducer/reducer";
-import {watchGetData} from "./sagas/saga";
+import {watchGetData, watchSendOrder} from "./sagas/saga";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -11,5 +11,6 @@ const store = createStore(reducer, composeWithDevTools(
 ));
 
 sagaMiddleware.run(watchGetData);
+sagaMiddleware.run(watchSendOrder);
 
 export default store;
