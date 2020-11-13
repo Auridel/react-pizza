@@ -1,6 +1,9 @@
 const initialState = {
     menu: [],
-    loaded: false
+    loaded: false,
+    cart: [],
+    cartCount: 0,
+    price: 0
 }
 
 const reducer = (state = initialState, action) => {

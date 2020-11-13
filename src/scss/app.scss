@@ -310,3 +310,9 @@ body {
     }
   }
 }
+
+.pizza-block{
+  &:last-of-type{
+    margin-right: auto;
+  }
+}
