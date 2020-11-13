@@ -8,7 +8,7 @@ import {ReactComponent as CartIcon} from "../assets/img/cart.svg";
 import {ReactComponent as TrashIcon} from "../assets/img/trash.svg";
 
 const Cart = ({cart, price, cartCount, menu}) => {
-    
+
     return (
         !cart.length?
                 <div className="container container--cart">

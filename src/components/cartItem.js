@@ -13,7 +13,7 @@ const CartItem = ({img, title, crust, size, price, quantity}) => {
             </div>
             <div className="cart__item-info">
                 <h3>{title}</h3>
-                <p>{crust}, {size}</p>
+                <p>{crust} тесто, {size} см.</p>
             </div>
             <div className="cart__item-count">
                 <div className="button button--outline button--circle cart__item-count-minus">
