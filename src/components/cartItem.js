@@ -1,7 +1,8 @@
 import React from "react";
 import {ReactComponent as Plus} from "../assets/img/plus.svg";
 
-const CartItem = ({img, title, crust, size, price, quantity}) => {
+const CartItem = ({id, img, title, crust, size, price, quantity, changeQuantity}) => {
+
     return (
         <div className="cart__item">
             <div className="cart__item-img">
@@ -16,11 +17,15 @@ const CartItem = ({img, title, crust, size, price, quantity}) => {
                 <p>{crust} тесто, {size} см.</p>
             </div>
             <div className="cart__item-count">
-                <div className="button button--outline button--circle cart__item-count-minus">
+                <div
+                    onClick={() => changeQuantity("minus", id)}
+                    className="button button--outline button--circle cart__item-count-minus">
                     <Plus/>
                 </div>
                 <b>{quantity}</b>
-                <div className="button button--outline button--circle cart__item-count-plus">
+                <div
+                    onClick={() => changeQuantity("plus", id)}
+                    className="button button--outline button--circle cart__item-count-plus">
                     <Plus/>
                 </div>
             </div>

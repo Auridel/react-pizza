@@ -1,13 +1,38 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
+import {CLEAR_CART, ADD_TO_CART, REMOVE_FROM_CART} from "../actions/actions";
 import CartItem from "./cartItem";
+import {totalPrice} from "../utils";
 import emptyCart from "../assets/img/empty-cart.png"
 import {ReactComponent as ArrowLeft} from "../assets/img/grey-arrow-left.svg";
 import {ReactComponent as CartIcon} from "../assets/img/cart.svg";
 import {ReactComponent as TrashIcon} from "../assets/img/trash.svg";
 
 const Cart = ({cart, price, cartCount, menu}) => {
+    const dispatch = useDispatch();
+
+    const changeQuantity = (action, id) => {
+        const idx = cart.findIndex(el => el.id === id);
+        switch (action) {
+            case "plus": {
+                cart[idx].quantity++;
+                dispatch(ADD_TO_CART(cart, totalPrice(cart)));
+                break;
+            }
+            case "minus": {
+                if(cart[idx].quantity === 1) {
+                    cart.splice(idx, 1);
+                    dispatch(REMOVE_FROM_CART(cart, totalPrice(cart)));
+                }
+                else {
+                    cart[idx].quantity--;
+                    dispatch(REMOVE_FROM_CART(cart, totalPrice(cart)));
+                }
+                break;
+            }
+        }
+    }
 
     return (
         !cart.length?
@@ -32,7 +57,9 @@ const Cart = ({cart, price, cartCount, menu}) => {
                                 <CartIcon/>
                                 Корзина
                             </h2>
-                            <div className="cart__clear">
+                            <div
+                                onClick={() => dispatch(CLEAR_CART())}
+                                className="cart__clear">
                                 <TrashIcon/>
 
                                 <span>Очистить корзину</span>
@@ -40,7 +67,7 @@ const Cart = ({cart, price, cartCount, menu}) => {
                         </div>
                         <div className="content__items">
 
-                            {cart.map(item => <CartItem key={`${item.itemId}${item.crust}${item.size}`} {...{...item, img: menu[item.itemId].img}}/>)}
+                            {cart.map(item => <CartItem changeQuantity={changeQuantity} key={item.id} {...{...item, img: menu[item.itemId].img}}/>)}
 
                         </div>
                         <div className="cart__bottom">

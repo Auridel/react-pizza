@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import {connect, useDispatch} from "react-redux";
-import {SET_CART} from "../actions/actions";
+import {v4 as uuidv4} from "uuid";
+import {ADD_TO_CART} from "../actions/actions";
 import {ReactComponent as Plus} from "../assets/img/plus.svg";
+import {totalPrice} from "../utils";
 
 const MenuItem = ({item, cart}) => {
     const [crust, setCrust]  = useState(1);
@@ -16,6 +18,7 @@ const MenuItem = ({item, cart}) => {
         const crustOpt = crust === 1? "тонкое" : "традиционное";
         const sizeOpt = size === 1? "26" : (size === 1.2? "30" : "40");
         const newItem = {
+            id: uuidv4(),
             itemId: item.id,
             crust: crustOpt,
             size: sizeOpt,
@@ -28,17 +31,17 @@ const MenuItem = ({item, cart}) => {
             if(idx > -1) {
                 if(newCart[idx].crust === crustOpt && newCart[idx].size === sizeOpt){
                     newCart[idx].quantity++;
-                    dispatch(SET_CART(newCart, totalPrice(newCart)))
+                    dispatch(ADD_TO_CART(newCart, totalPrice(newCart)))
                 }
             }
             else {
                 newCart = [...newCart, newItem];
-                dispatch(SET_CART(newCart, totalPrice(newCart)));
+                dispatch(ADD_TO_CART(newCart, totalPrice(newCart)));
             }
         }
         else {
             const newCart = [newItem];
-            dispatch(SET_CART(newCart, totalPrice(newCart)))
+            dispatch(ADD_TO_CART(newCart, totalPrice(newCart)))
         }
     }
 
@@ -50,13 +53,7 @@ const MenuItem = ({item, cart}) => {
         })
         return counter;
     }
-    const totalPrice = (arr) => {
-        let price = 0;
-        arr.forEach(el => {
-            price += el.price * el.quantity;
-        })
-        return price;
-    }
+
 
 
     return (

@@ -15,11 +15,27 @@ const reducer = (state = initialState, action) => {
                 menu: [...action.payload]
             }
         }
-        case "SET_CART": {
+        case "ADD_TO_CART": {
             return {
                 ...state,
                 cart: [...action.payload.items],
                 cartCount: state.cartCount + 1,
+                price: action.payload.total
+            }
+        }
+        case "CLEAR_CART": {
+            return {
+                ...state,
+                cart: [],
+                cartCount: 0,
+                price: 0
+            }
+        }
+        case "REMOVE_FROM_CART": {
+            return {
+                ...state,
+                cart: [...action.payload.items],
+                cartCount: state.cartCount - 1,
                 price: action.payload.total
             }
         }

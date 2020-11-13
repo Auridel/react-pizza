@@ -11,9 +11,25 @@ const SET_MENU = (menu) => {
     }
 }
 
-const SET_CART = (items, total) => {
+const ADD_TO_CART = (items, total) => {
     return {
-        type: "SET_CART",
+        type: "ADD_TO_CART",
+        payload: {
+            items,
+            total
+        }
+    }
+}
+
+const CLEAR_CART = () => {
+    return {
+        type: "CLEAR_CART"
+    }
+}
+
+const REMOVE_FROM_CART = (items, total) => {
+    return {
+        type: "REMOVE_FROM_CART",
         payload: {
             items,
             total
@@ -26,5 +42,7 @@ const SET_CART = (items, total) => {
 export {
     GET_DATA,
     SET_MENU,
-    SET_CART
+    ADD_TO_CART,
+    CLEAR_CART,
+    REMOVE_FROM_CART
 }
