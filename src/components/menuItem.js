@@ -1,10 +1,12 @@
 import React, {useState} from "react";
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
+import {SET_CART} from "../actions/actions";
 import {ReactComponent as Plus} from "../assets/img/plus.svg";
 
 const MenuItem = ({item, cart}) => {
     const [crust, setCrust]  = useState(1);
     const [size, setSize] = useState(1);
+    const dispatch = useDispatch();
 
     const calcPrice = (basePrice, crustOpt, sizeOpt) => {
         return Math.floor(basePrice * crustOpt * sizeOpt);
@@ -14,13 +16,32 @@ const MenuItem = ({item, cart}) => {
         const crustOpt = crust === 1? "тонкое" : "традиционное";
         const sizeOpt = size === 1? "26" : (size === 1.2? "30" : "40");
         const newItem = {
-            id: item.id,
+            itemId: item.id,
             crust: crustOpt,
-            size: sizeOpt
+            size: sizeOpt,
+            quantity: 1
+        }
+        if(cart.length) {
+            let newCart = [...cart];
+            const idx = newCart.findIndex(el => (el.itemId === item.id && el.crust === crustOpt && el.size === sizeOpt));
+            if(idx > -1) {
+                if(newCart[idx].crust === crustOpt && newCart[idx].size === sizeOpt){
+                    newCart[idx].quantity++;
+                    dispatch(SET_CART(newCart))
+                }
+            }
+            else {
+                newCart = [...newCart, newItem];
+                dispatch(SET_CART(newCart));
+            }
+        }
+        else {
+            const newCart = [newItem];
+            dispatch(SET_CART(newCart))
         }
     }
 
-    addToCart(item)
+
     return (
         <div className="pizza-block">
             <img
@@ -52,7 +73,9 @@ const MenuItem = ({item, cart}) => {
             </div>
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">{calcPrice(item.price, crust, size)} ₽</div>
-                <div className="button button--outline button--add">
+                <div
+                    onClick={() => addToCart(item)}
+                    className="button button--outline button--add">
                     <Plus/>
                     <span>Добавить</span>
                     <i>2</i>

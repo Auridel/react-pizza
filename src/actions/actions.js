@@ -11,10 +11,10 @@ const SET_MENU = (menu) => {
     }
 }
 
-const ADD_TO_CART = (item) => {
+const SET_CART = (items) => {
     return {
-        type: "ADD_TO_CART",
-        payload: item
+        type: "SET_CART",
+        payload: items
     }
 }
 
@@ -23,5 +23,5 @@ const ADD_TO_CART = (item) => {
 export {
     GET_DATA,
     SET_MENU,
-    ADD_TO_CART
+    SET_CART
 }
