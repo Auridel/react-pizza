@@ -11,7 +11,7 @@ const App = ({menu, loaded}) => {
 
     useEffect(() =>{
         if(!loaded) dispatch(GET_DATA());
-    }, [menu])
+    }, [])
 
     const location = useLocation();
 

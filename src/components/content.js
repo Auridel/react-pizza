@@ -34,7 +34,7 @@ const Content = ({menu}) => {
                 </div>
             </div>
             <h2 className="content__title">Все пиццы</h2>
-            {menu.length? <ItemsList/> : ""}
+            {menu.length? <ItemsList items={menu}/> : ""}
         </div>
 
     )

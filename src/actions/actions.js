@@ -4,7 +4,15 @@ const GET_DATA = () => {
     }
 }
 
+const SET_MENU = (menu) => {
+    return {
+        type: "SET_MENU",
+        payload: menu
+    }
+}
+
 
 export {
-    GET_DATA
+    GET_DATA,
+    SET_MENU
 }
