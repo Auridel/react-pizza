@@ -8,6 +8,15 @@ import {ReactComponent as TrashIcon} from "../assets/img/trash.svg";
 
 const Cart = () => {
     const isEmpty = false;
+    const item = {
+        img: "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
+        title: "Сырный цыпленок",
+        crust: "тонкое тесто",
+        size: "26 см.",
+        price: 385,
+        quantity: 2
+    }
+
     return (
         isEmpty?
                 <div className="container container--cart">
@@ -38,7 +47,9 @@ const Cart = () => {
                             </div>
                         </div>
                         <div className="content__items">
-                            <CartItem/>
+
+                            <CartItem {...item}/>
+
                         </div>
                         <div className="cart__bottom">
                             <div className="cart__bottom-details">
@@ -48,7 +59,6 @@ const Cart = () => {
                             <div className="cart__bottom-buttons">
                                 <Link to="/" className="button button--outline button--add go-back-btn">
                                     <ArrowLeft/>
-
                                     <span>Вернуться назад</span>
                                 </Link>
                                 <div className="button pay-btn">

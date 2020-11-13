@@ -1,0 +1,68 @@
+[
+  {
+    "id": "1",
+    "title": "Сырная",
+    "options": ["veg"],
+    "img": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/c2da53ec-00e2-4446-a4e6-74b83ed0b357.jpg"
+  },
+  {
+    "id": "2",
+    "title": "Ветчина и сыр",
+    "options": ["meat"],
+    "img": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/dd59dcd5-cbf7-44e9-a5bd-1654ef06e6a3.jpg"
+  },
+  {
+    "id": "3",
+    "title": "Мексиканская",
+    "options": ["meat", "hot"],
+    "img": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/ecd9d5b3-0cfc-4138-9559-18d9631fe8aa.jpg"
+  },
+  {
+    "id": "4",
+    "title": "Четыре сыра",
+    "options": ["veg"],
+    "img": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/baf084f4-fc94-443c-a646-fdeff9f301a6.jpg"
+  },
+  {
+    "id": "5",
+    "title": "Пицца-Пирог",
+    "options": ["veg", "sweet"],
+    "img": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/dd9cb28e-ede2-46cf-8e95-79d31e407819.jpg"
+  },
+  {
+    "id": "6",
+    "title": "Чизбургер-Пицца",
+    "options": ["meat"],
+    "img": "https://dodopizza-a.akamaihd.net/static/Img/Products/1959b0fdf5f049fb9ec12cf05d535bc7_292x292.jpeg"
+  },
+  {
+    "id": "7",
+    "title": "Зфпеченое яблоко",
+    "options": ["veg", "sweet"],
+    "img": "https://dodopizza-a.akamaihd.net/static/Img/Products/6289691b5edd41b6ad280fdc340c4e59_292x292.jpeg"
+  },
+  {
+    "id": "8",
+    "title": "Цыпленок барбекю",
+    "options": ["meat", "grill"],
+    "img": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/f4c69cd6-f8ba-4454-b493-a993a4be73cd.jpg"
+  },
+  {
+    "id": "9",
+    "title": "Пепперони",
+    "options": ["meat", "hot"],
+    "img": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/4df905b0-0a43-4e95-a096-8e470918a267.jpg"
+  },
+  {
+    "id": "10",
+    "title": "Ветчина и грибы",
+    "options": ["meat"],
+    "img": "https://dodopizza-a.akamaihd.net/static/Img/Products/b1ffa66f2ebb4e959122e54eaa071109_292x292.jpeg"
+  },
+  {
+    "id": "11",
+    "title": "Песто",
+    "options": ["meat"],
+    "img": "https://dodopizza-a.akamaihd.net/static/Img/Products/548f06002e5d46c699245285d5f4b1cc_292x292.jpeg"
+  }
+]
