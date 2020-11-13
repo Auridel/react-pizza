@@ -31,6 +31,7 @@ const Cart = ({cart, price, cartCount, menu}) => {
                 }
                 break;
             }
+            default: break;
         }
     }
 
